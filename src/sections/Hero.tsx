@@ -15,9 +15,9 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gray-100 text-xs sm:text-sm text-gray-700 mb-6 sm:mb-8"
+            className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-brand/10 border border-brand/20 text-xs sm:text-sm text-gray-900 mb-6 sm:mb-8"
           >
-            <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse" />
+            <span className="w-2 h-2 bg-brand rounded-full mr-2 animate-pulse" />
             Available for new projects
           </motion.div>
 
@@ -31,7 +31,7 @@ export const Hero = () => {
             We design brands
             <br />
             that{" "}
-            <GradientText className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
+            <GradientText className="bg-gradient-to-r from-brand via-yellow-500 to-orange-500">
               spark growth
             </GradientText>
           </motion.h1>

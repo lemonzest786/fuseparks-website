@@ -30,12 +30,12 @@ export const Card = ({
       transition={{ duration: 0.5, delay }}
       whileHover={{ y: -5 }}
       className={cn(
-        "group relative p-6 sm:p-8 bg-white border border-gray-200 rounded-2xl hover:border-gray-300 transition-all duration-300 hover:shadow-xl",
+        "group relative p-6 sm:p-8 bg-white border border-gray-200 rounded-2xl hover:border-brand/50 transition-all duration-300 hover:shadow-xl",
         className,
       )}
     >
       {Icon && (
-        <div className="mb-4 text-gray-900 group-hover:scale-110 transition-transform duration-300">
+        <div className="mb-4 text-gray-900 group-hover:text-brand group-hover:scale-110 transition-all duration-300">
           {isLucideIcon || isFunction ? (
             <Icon className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />
           ) : isValidElement(Icon) ? (
@@ -51,7 +51,7 @@ export const Card = ({
       </p>
 
       {/* Subtle gradient overlay on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50/0 to-gray-100/0 group-hover:from-gray-50/50 group-hover:to-gray-100/30 rounded-2xl transition-all duration-300 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-brand/0 to-brand/0 group-hover:from-brand/5 group-hover:to-brand/10 rounded-2xl transition-all duration-300 pointer-events-none" />
     </motion.div>
   );
 };

@@ -23,11 +23,11 @@ export const Button = ({
 
   const variants = {
     primary:
-      "bg-black text-white hover:bg-gray-800 border border-black hover:border-gray-800",
+      "bg-brand text-gray-900 hover:bg-brand/90 border border-brand hover:border-brand/90 font-semibold",
     secondary:
       "bg-white text-black hover:bg-gray-50 border border-gray-200 hover:border-gray-300",
     outline:
-      "bg-transparent text-black hover:bg-gray-50 border border-gray-300 hover:border-gray-400",
+      "bg-transparent text-black hover:bg-brand/10 border border-gray-300 hover:border-brand",
   };
 
   const sizes = {

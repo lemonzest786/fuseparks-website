@@ -1,40 +1,99 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { Container, ProjectCard } from "@/components";
+import { Container } from "@/components";
+import { ExpandableCard } from "@/components/ui/expandable-card";
 
 export const Work = () => {
   const projects = [
     {
       title: "TechFlow Platform",
-      category: "Web Development",
-      description:
-        "A comprehensive web platform built with cutting-edge technologies for seamless user experiences.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800",
+      description: "Web Development",
+      src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800",
+      ctaText: "View Project",
+      ctaLink: "#",
+      content: () => {
+        return (
+          <p>
+            A comprehensive web platform built with cutting-edge technologies
+            for seamless user experiences. This project showcases modern web
+            development practices including responsive design, performance
+            optimization, and intuitive user interfaces.
+            <br />
+            <br />
+            The platform features real-time data synchronization, advanced
+            analytics dashboards, and a scalable architecture designed to handle
+            high traffic loads. Built with React, TypeScript, and modern backend
+            technologies to ensure reliability and maintainability.
+          </p>
+        );
+      },
     },
     {
       title: "Luxe Cosmetics",
-      category: "Brand Identity",
-      description:
-        "Premium brand identity design that captures elegance and sophistication.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800",
+      description: "Brand Identity",
+      src: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800",
+      ctaText: "View Project",
+      ctaLink: "#",
+      content: () => {
+        return (
+          <p>
+            Premium brand identity design that captures elegance and
+            sophistication. This comprehensive branding project includes logo
+            design, color palette development, typography selection, and brand
+            guidelines.
+            <br />
+            <br />
+            The visual identity reflects the luxury and quality of the cosmetics
+            line while maintaining a modern and approachable aesthetic. Every
+            element was carefully crafted to resonate with the target audience
+            and stand out in the competitive beauty industry.
+          </p>
+        );
+      },
     },
     {
       title: "Urban Spaces",
-      category: "Digital Design",
-      description:
-        "Modern digital design for contemporary architecture and living spaces.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800",
+      description: "Digital Design",
+      src: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800",
+      ctaText: "View Project",
+      ctaLink: "#",
+      content: () => {
+        return (
+          <p>
+            Modern digital design for contemporary architecture and living
+            spaces. This project combines stunning visuals with functional
+            design to showcase architectural excellence and urban development.
+            <br />
+            <br />
+            Features include interactive 3D visualizations, virtual tours, and
+            detailed property information. The design emphasizes clean lines,
+            spacious layouts, and a sophisticated color scheme that reflects the
+            modern urban lifestyle.
+          </p>
+        );
+      },
     },
     {
       title: "FitLife App",
-      category: "App Design",
-      description:
-        "Mobile-first fitness application design focused on user engagement and motivation.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800",
+      description: "App Design",
+      src: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800",
+      ctaText: "View Project",
+      ctaLink: "#",
+      content: () => {
+        return (
+          <p>
+            Mobile-first fitness application design focused on user engagement
+            and motivation. The app provides personalized workout plans,
+            nutrition tracking, and progress monitoring to help users achieve
+            their fitness goals.
+            <br />
+            <br />
+            With an intuitive interface and gamification elements, FitLife keeps
+            users motivated and engaged. Features include social sharing,
+            achievement badges, and integration with popular fitness wearables
+            for comprehensive health tracking.
+          </p>
+        );
+      },
     },
   ];
 
@@ -47,7 +106,7 @@ export const Work = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="max-w-3xl mb-12 sm:mb-16"
+          className="max-w-3xl mb-12 sm:mb-16 mx-auto text-center"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
             Selected Work
@@ -58,36 +117,14 @@ export const Work = () => {
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <ProjectCard {...project} />
-            </motion.div>
-          ))}
-        </div>
-
-        {/* View All Button */}
+        {/* Expandable Cards */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-12 sm:mt-16 text-center"
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <a
-            href="#"
-            className="inline-flex items-center text-gray-900 font-medium hover:text-gray-600 transition-colors duration-200 text-sm sm:text-base"
-          >
-            View All Projects
-            <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
-          </a>
+          <ExpandableCard cards={projects} />
         </motion.div>
       </Container>
     </section>

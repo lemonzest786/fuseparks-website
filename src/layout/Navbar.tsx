@@ -37,6 +37,8 @@ export const Navbar = () => {
     { name: "Work", href: "#work" },
     { name: "Services", href: "#services" },
     { name: "About", href: "#about" },
+    { name: "Plans", href: "#plans" },
+    { name: "FAQ", href: "#faq" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -57,10 +59,14 @@ export const Navbar = () => {
             {/* Logo */}
             <motion.a
               href="#"
-              className="text-xl md:text-2xl font-bold text-gray-900 relative z-50"
+              className="relative z-50"
               whileHover={{ scale: 1.05 }}
             >
-              Fuseparks
+              <img
+                src="/logo/main.png"
+                alt="Fuseparks"
+                className="h-8 md:h-7 w-auto"
+              />
             </motion.a>
 
             {/* Desktop Navigation */}
@@ -78,7 +84,7 @@ export const Navbar = () => {
                 href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-2 bg-gray-900 text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors duration-200"
+                className="px-6 py-2 bg-brand text-gray-900 rounded-lg text-sm font-semibold hover:bg-brand/90 transition-colors duration-200"
               >
                 Let's Talk
               </motion.a>
@@ -152,7 +158,7 @@ export const Navbar = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="mt-8 px-6 py-4 bg-gray-900 text-white rounded-lg text-center font-medium hover:bg-gray-800 transition-colors duration-200"
+                  className="mt-8 px-6 py-4 bg-brand text-gray-900 rounded-lg text-center font-semibold hover:bg-brand/90 transition-colors duration-200"
                 >
                   Let's Talk
                 </motion.a>

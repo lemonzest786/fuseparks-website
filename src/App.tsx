@@ -1,5 +1,5 @@
 import { Navbar, Footer } from "@/layout";
-import { Hero, Services, Work, About, Contact } from "@/sections";
+import { Hero, Services, Work, About, Plans, FAQ, Contact } from "@/sections";
 
 function App() {
   return (
@@ -10,6 +10,8 @@ function App() {
         <Services />
         <Work />
         <About />
+        <Plans />
+        <FAQ />
         <Contact />
       </main>
       <Footer />

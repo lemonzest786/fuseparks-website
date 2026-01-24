@@ -58,7 +58,7 @@ export const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 * index }}
-                className="border-l-4 border-gray-900 pl-4 sm:pl-6"
+                className="border-l-4 border-brand pl-4 sm:pl-6"
               >
                 <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2">
                   {value.title}

@@ -1,7 +1,57 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import { Container, Button } from "@/components";
+import { Check, AlertCircle } from "lucide-react";
 
 export const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
+    null,
+  );
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      // Send email via EmailJS
+      await emailjs.send(
+        "service_apdg6qs", // Your EmailJS Service ID
+        "template_fwcxjs7", // Replace with your EmailJS Template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          company: formData.company,
+          message: formData.message,
+        },
+        "sIxdbmNav3-4E2qc2", // Replace with your EmailJS Public Key
+      );
+
+      setSubmitStatus("success");
+      setFormData({ name: "", email: "", company: "", message: "" });
+    } catch (error) {
+      console.error("Error sending email:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="py-16 sm:py-20 md:py-32 bg-white">
       <Container className="px-4 sm:px-6">
@@ -26,6 +76,7 @@ export const Contact = () => {
 
           {/* Contact Form */}
           <motion.form
+            onSubmit={handleSubmit}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -38,12 +89,16 @@ export const Contact = () => {
                   htmlFor="name"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  Name
+                  Name *
                 </label>
                 <input
                   type="text"
                   id="name"
-                  className="w-full px-4 py-3 text-sm sm:text-base bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 placeholder:text-gray-400"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 text-sm sm:text-base bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent transition-all duration-200 text-gray-900 placeholder:text-gray-400"
                   placeholder="Your name"
                 />
               </div>
@@ -52,12 +107,16 @@ export const Contact = () => {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  Email
+                  Email *
                 </label>
                 <input
                   type="email"
                   id="email"
-                  className="w-full px-4 py-3 text-sm sm:text-base bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 placeholder:text-gray-400"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 text-sm sm:text-base bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent transition-all duration-200 text-gray-900 placeholder:text-gray-400"
                   placeholder="your@email.com"
                 />
               </div>
@@ -73,7 +132,10 @@ export const Contact = () => {
               <input
                 type="text"
                 id="company"
-                className="w-full px-4 py-3 text-sm sm:text-base bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 placeholder:text-gray-400"
+                name="company"
+                value={formData.company}
+                onChange={handleChange}
+                className="w-full px-4 py-3 text-sm sm:text-base bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent transition-all duration-200 text-gray-900 placeholder:text-gray-400"
                 placeholder="Your company name"
               />
             </div>
@@ -83,18 +145,56 @@ export const Contact = () => {
                 htmlFor="message"
                 className="block text-sm font-medium text-gray-700 mb-2"
               >
-                Message
+                Message *
               </label>
               <textarea
                 id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
                 rows={6}
-                className="w-full px-4 py-3 text-sm sm:text-base bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none text-gray-900 placeholder:text-gray-400"
+                className="w-full px-4 py-3 text-sm sm:text-base bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent transition-all duration-200 resize-none text-gray-900 placeholder:text-gray-400"
                 placeholder="Tell us about your project..."
               />
             </div>
 
-            <Button type="submit" size="lg" className="w-full md:w-auto">
-              Send Message
+            {/* Success/Error Messages */}
+            {submitStatus === "success" && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center gap-2 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800"
+              >
+                <Check className="w-5 h-5 flex-shrink-0" />
+                <p className="text-sm">
+                  Thank you! Your message has been sent successfully. We'll get
+                  back to you soon.
+                </p>
+              </motion.div>
+            )}
+
+            {submitStatus === "error" && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800"
+              >
+                <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                <p className="text-sm">
+                  Oops! Something went wrong. Please try again or email us
+                  directly.
+                </p>
+              </motion.div>
+            )}
+
+            <Button
+              type="submit"
+              size="lg"
+              className="w-full md:w-auto"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Sending..." : "Send Message"}
             </Button>
           </motion.form>
 

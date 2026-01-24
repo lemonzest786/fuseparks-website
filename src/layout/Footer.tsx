@@ -21,9 +21,11 @@ export const Footer = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
             {/* Brand */}
             <div className="col-span-1 sm:col-span-2 md:col-span-1">
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
-                Fuseparks
-              </h3>
+              <img
+                src="/logo/main.png"
+                alt="Fuseparks"
+                className="h-8 sm:h-10 w-auto mb-3 sm:mb-4"
+              />
               <p className="text-gray-600 text-sm leading-relaxed">
                 We design brands that spark growth and create digital
                 experiences that matter.
