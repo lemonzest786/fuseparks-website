@@ -1,5 +1,14 @@
 import { Navbar, Footer } from "@/layout";
-import { Hero, Services, Work, About, Plans, FAQ, Contact } from "@/sections";
+import {
+  Hero,
+  Services,
+  Work,
+  About,
+  Plans,
+  Testimonials,
+  FAQ,
+  Contact,
+} from "@/sections";
 
 function App() {
   return (
@@ -11,6 +20,7 @@ function App() {
         <Work />
         <About />
         <Plans />
+        <Testimonials />
         <FAQ />
         <Contact />
       </main>
