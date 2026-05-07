@@ -49,7 +49,7 @@ export const About = () => {
             </p>
           </motion.div>
 
-          {/* Right Content - Values */}
+          {/* Right Content - Values + Impact Numbers */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -74,6 +74,26 @@ export const About = () => {
                 </p>
               </motion.div>
             ))}
+
+            {/* Impact Numbers */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-200"
+            >
+              {[
+                { value: "98%", label: "Client satisfaction" },
+                { value: "14 days", label: "Avg. first delivery" },
+                { value: "3×", label: "Avg. engagement lift" },
+              ].map((item, i) => (
+                <div key={i} className="text-center">
+                  <div className="text-xl sm:text-2xl font-bold text-gray-900">{item.value}</div>
+                  <div className="text-xs text-gray-500 mt-1 leading-tight">{item.label}</div>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
         </div>
       </Container>

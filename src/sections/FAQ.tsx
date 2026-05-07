@@ -25,7 +25,7 @@ export const FAQ = () => {
     {
       question: "Do you offer revisions?",
       answer:
-        "Yes! All our plans include revision rounds. The Starter plan includes 2 rounds, Professional includes 4 rounds, and Enterprise includes unlimited revisions. We want to ensure you're completely satisfied with the final result.",
+        "Yes! All our plans include unlimited revisions. We iterate until you're completely satisfied — no caps, no surprise charges. Your happiness with the final result is what matters.",
     },
     {
       question: "Can I upgrade my plan later?",

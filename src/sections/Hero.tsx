@@ -8,6 +8,10 @@ export const Hero = () => {
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
 
+      {/* Gradient blobs */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand/20 rounded-full blur-[120px] -translate-y-1/3 translate-x-1/3 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
+
       <Container className="relative z-10 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto text-center">
           {/* Badge */}
@@ -51,10 +55,10 @@ export const Hero = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4"
           >
-            <Button size="lg" variant="primary" className="w-full sm:w-auto">
+            <Button size="lg" variant="primary" className="w-full sm:w-auto" onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}>
               View Our Work
             </Button>
-            <Button size="lg" variant="outline" className="w-full sm:w-auto">
+            <Button size="lg" variant="outline" className="w-full sm:w-auto" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
               Get in Touch
             </Button>
           </motion.div>
@@ -80,6 +84,28 @@ export const Hero = () => {
                 </div>
               </div>
             ))}
+          </motion.div>
+
+          {/* Trusted By Strip */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mt-12 sm:mt-16 px-4"
+          >
+            <p className="text-xs sm:text-sm text-gray-400 uppercase tracking-widest mb-6 text-center font-medium">
+              Trusted by teams at
+            </p>
+            <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-10">
+              {["Nexora", "Brightloop", "Stackwave", "Luminary", "Veltrix"].map((name) => (
+                <span
+                  key={name}
+                  className="text-gray-300 font-bold text-base sm:text-lg tracking-tight select-none"
+                >
+                  {name}
+                </span>
+              ))}
+            </div>
           </motion.div>
         </div>
       </Container>

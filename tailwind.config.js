@@ -65,8 +65,18 @@ export default {
         "slide-up": "slideUp 0.5s ease-out",
         "slide-down": "slideDown 0.5s ease-out",
         spotlight: "spotlight 2s ease .75s 1 forwards",
+        marquee: "marquee 35s linear infinite",
+        "marquee-reverse": "marqueeReverse 28s linear infinite",
       },
       keyframes: {
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        marqueeReverse: {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
         fadeIn: {
           "0%": {
             opacity: "0",

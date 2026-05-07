@@ -7,8 +7,7 @@ const testimonials = [
     id: 1,
     name: "Sarah Johnson",
     role: "CEO, TechStart Inc.",
-    company: "TechStart Inc.",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
     content:
       "Fuseparks transformed our brand identity completely. Their creative approach and attention to detail exceeded our expectations. The team was professional, responsive, and delivered exceptional results.",
     rating: 5,
@@ -17,8 +16,7 @@ const testimonials = [
     id: 2,
     name: "Michael Chen",
     role: "Founder, GrowthLabs",
-    company: "GrowthLabs",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
     content:
       "Working with Fuseparks was a game-changer for our business. They delivered a stunning website that not only looks amazing but also converts visitors into customers. Highly recommended!",
     rating: 5,
@@ -27,8 +25,7 @@ const testimonials = [
     id: 3,
     name: "Emily Rodriguez",
     role: "Marketing Director, Bloom Co.",
-    company: "Bloom Co.",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emily",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
     content:
       "The monthly design plan has been perfect for our growing startup. Fuseparks consistently delivers high-quality designs on time. Their unlimited revisions policy gives us peace of mind.",
     rating: 5,
@@ -37,18 +34,16 @@ const testimonials = [
     id: 4,
     name: "David Park",
     role: "Product Manager, InnovateTech",
-    company: "InnovateTech",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
     content:
-      "Exceptional creativity and professionalism. Fuseparks helped us rebrand our entire product line. The results speak for themselves - our engagement has increased by 300%!",
-    rating: 5,
+      "Exceptional creativity and professionalism. Fuseparks helped us rebrand our entire product line. The results speak for themselves — our engagement has increased by 300%.",
+    rating: 4,
   },
   {
     id: 5,
     name: "Lisa Thompson",
     role: "Owner, Artisan Bakery",
-    company: "Artisan Bakery",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Lisa",
+    image: "https://images.unsplash.com/photo-1554151228-14d9def656e4?w=150&h=150&fit=crop&crop=face",
     content:
       "From logo design to our complete website, Fuseparks handled everything beautifully. They truly understood our vision and brought it to life. Our customers love the new look!",
     rating: 5,
@@ -57,25 +52,50 @@ const testimonials = [
     id: 6,
     name: "James Wilson",
     role: "CTO, CloudSync",
-    company: "CloudSync",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=James",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
     content:
       "Best design agency we've worked with. Fast turnaround, creative solutions, and excellent communication. The professional plan has been worth every penny for our team.",
-    rating: 5,
+    rating: 4,
   },
 ];
 
+const TestimonialCard = ({ t }: { t: (typeof testimonials)[0] }) => (
+  <div className="flex-shrink-0 w-80 sm:w-96 bg-white rounded-2xl p-6 border border-gray-200 mx-3 shadow-sm">
+    <Quote className="w-7 h-7 text-brand/30 mb-3" />
+    <div className="flex gap-1 mb-3">
+      {[...Array(5)].map((_, i) => (
+        <Star
+          key={i}
+          className={`w-4 h-4 ${i < t.rating ? "fill-brand text-brand" : "fill-gray-200 text-gray-200"}`}
+        />
+      ))}
+    </div>
+    <p className="text-gray-700 text-sm leading-relaxed mb-5">"{t.content}"</p>
+    <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+      <img
+        src={t.image}
+        alt={t.name}
+        className="w-10 h-10 rounded-full object-cover bg-gray-100"
+      />
+      <div>
+        <h4 className="font-semibold text-gray-900 text-sm">{t.name}</h4>
+        <p className="text-xs text-gray-500">{t.role}</p>
+      </div>
+    </div>
+  </div>
+);
+
 export const Testimonials = () => {
+  const doubled = [...testimonials, ...testimonials];
+
   return (
     <section
       id="testimonials"
       className="relative py-16 sm:py-20 md:py-32 bg-gray-50 overflow-hidden"
     >
-      {/* Grid background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
 
       <Container className="relative z-10 px-4 sm:px-6">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -83,81 +103,46 @@ export const Testimonials = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-12 sm:mb-16"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-brand/10 rounded-full mb-4 sm:mb-6"
-          >
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand/10 rounded-full mb-4 sm:mb-6">
             <Quote className="w-4 h-4 text-brand" />
-            <span className="text-sm font-medium text-gray-900">
-              Client Testimonials
-            </span>
-          </motion.div>
+            <span className="text-sm font-medium text-gray-900">Client Testimonials</span>
+          </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">
             What Our Clients Say
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Don't just take our word for it. Here's what our clients have to say
-            about working with Fuseparks.
+            Don't just take our word for it. Here's what our clients have to say about working with Fuseparks.
           </p>
         </motion.div>
+      </Container>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={testimonial.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200 hover:border-brand/50 hover:shadow-lg transition-all duration-300 group"
-            >
-              {/* Quote Icon */}
-              <div className="mb-4">
-                <Quote className="w-8 h-8 text-brand/20 group-hover:text-brand/40 transition-colors duration-300" />
-              </div>
-
-              {/* Rating */}
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-brand text-brand" />
-                ))}
-              </div>
-
-              {/* Content */}
-              <p className="text-gray-700 text-sm sm:text-base leading-relaxed mb-6">
-                "{testimonial.content}"
-              </p>
-
-              {/* Author */}
-              <div className="flex items-center gap-4 pt-6 border-t border-gray-100">
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-12 h-12 rounded-full bg-gray-100"
-                />
-                <div>
-                  <h4 className="font-semibold text-gray-900 text-sm sm:text-base">
-                    {testimonial.name}
-                  </h4>
-                  <p className="text-xs sm:text-sm text-gray-600">
-                    {testimonial.role}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+      {/* Marquee rows — full bleed, outside Container */}
+      <div className="space-y-4">
+        {/* Row 1 — scroll left */}
+        <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+          <div className="flex animate-marquee w-max">
+            {doubled.map((t, i) => (
+              <TestimonialCard key={i} t={t} />
+            ))}
+          </div>
         </div>
 
-        {/* CTA */}
+        {/* Row 2 — scroll right */}
+        <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+          <div className="flex animate-marquee-reverse w-max">
+            {[...doubled].reverse().map((t, i) => (
+              <TestimonialCard key={i} t={t} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <Container className="relative z-10 px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.6 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
           className="text-center mt-12 sm:mt-16"
         >
           <p className="text-gray-600 mb-4">Ready to join our happy clients?</p>

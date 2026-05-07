@@ -35,12 +35,14 @@ export const Card = ({
       )}
     >
       {Icon && (
-        <div className="mb-4 text-gray-900 group-hover:text-brand group-hover:scale-110 transition-all duration-300">
-          {isLucideIcon || isFunction ? (
-            <Icon className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />
-          ) : isValidElement(Icon) ? (
-            Icon
-          ) : null}
+        <div className="mb-5 inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-brand/10 group-hover:bg-brand/20 transition-colors duration-300">
+          <div className="text-gray-900 group-hover:scale-110 transition-transform duration-300">
+            {isLucideIcon || isFunction ? (
+              <Icon className="w-6 h-6 sm:w-7 sm:h-7" strokeWidth={1.5} />
+            ) : isValidElement(Icon) ? (
+              Icon
+            ) : null}
+          </div>
         </div>
       )}
       <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-gray-900">

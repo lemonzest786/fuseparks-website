@@ -132,6 +132,25 @@ export const Work = () => {
         >
           <ExpandableCard cards={projects} />
         </motion.div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-12 sm:mt-16 text-center"
+        >
+          <p className="text-gray-400 mb-4 text-sm sm:text-base">
+            Like what you see? Let's create something great together.
+          </p>
+          <a
+            href="#contact"
+            className="inline-block px-8 py-3 bg-brand text-gray-900 rounded-lg font-semibold hover:bg-brand/90 transition-colors duration-200"
+          >
+            Start a Project
+          </a>
+        </motion.div>
       </Container>
     </section>
   );
